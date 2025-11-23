@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع الإلكتروني - تصميم عصري وموثوق</title>
+    
+    <style>
+        /* =====================================
+         * الألوان والتصميم الحديث
+         * ===================================== */
+        :root {
+            /* درجات ألوان بحرية عصرية */
+            --color-primary: #1E90FF;    /* DodgerBlue - أساسي */
+            --color-secondary: #00BFFF;  /* DeepSkyBlue - ثانوي */
+            --color-background: #F8F8FF; /* GhostWhite - خلفية فاتحة */
+            --color-card: #FFFFFF;       /* White - خلفية البطاقات/الأقسام */
+            --color-text: #333333;       /* لون النص الأساسي */
+            --color-success: #28a745;
+            --color-danger: #dc3545;
+        }
+
+        /* التصميم الأساسي للجسم */
+        body {
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; 
+            text-align: right;
+            font-size: 14px; 
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        /* تنسيق الحقول والأزرار */
+        input:not([type="checkbox"]), button {
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            width: 95%;
+            box-sizing: border-box;
+        }
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* =====================================
+         * 1. صفحة الزوار (الواجهة الرئيسية)
+         * ===================================== */
+        #visitor-page {
+            background-color: var(--color-secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .search-container {
+            padding: 30px; 
+            background: var(--color-card);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%; 
+            max-width: 450px;
+        }
+        #product-number {
+            border: 2px solid var(--color-primary);
+            text-align: center;
+            font-size: 1.2em;
+        }
+        #search-button {
+            background-color: var(--color-primary);
+            color: white;
+            width: 100%;
+        }
+
+        /* =====================================
+         * 2. لوحة التحكم (القوائم العلوية)
+         * ===================================== */
+
+        #admin-page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        /* شريط التنقل العلوي */
+        .top-nav {
+            background-color: var(--color-primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            width: 100%;
+        }
+        .nav-list {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap; 
+        }
+        .nav-list li {
+            flex-grow: 1;
+        }
+        .nav-button {
+            background: none;
+            color: white;
+            padding: 15px 10px;
+            border-radius: 0;
+            font-size: 1em;
+            width: 100%;
+            display: block;
+            text-align: center;
+            margin: 0;
+        }
+        .nav-button.active {
+            background-color: var(--color-secondary);
+            color: white;
+        }
+        .nav-button:hover:not(.active) {
+            background-color: #3b90f7;
+        }
+
+        .content {
+            padding: 20px; 
+        }
+
+        .section {
+            display: none;
+            background: var(--color-card);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 15px;
+        }
+        .section.active {
+            display: block;
+        }
+
+        /* الجداول (الإحصائيات) */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .stats-table th, .stats-table td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: right;
+        }
+        .stats-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        /* تنسيق المنتجات في قائمة التعديل (متجاوب) */
+        #products-list-container li {
+            list-style: none;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        #products-list-container li > div:first-child {
+            flex-basis: 100%; /* تأكد من شغل العرض كاملاً على الجوال */
+            margin-bottom: 10px;
+        }
+        #products-list-container li > div:last-child {
+             flex-basis: 100%;
+             text-align: left;
+        }
+        #products-list-container li button {
+            width: auto;
+            margin: 5px 5px 0 0;
+            font-size: 0.8em;
+            padding: 5px 8px;
+        }
+
+        /* Mobile specific adjustments (3 أزرار في الصف) */
+        @media (max-width: 600px) {
+            .nav-list li {
+                width: 33.33%; 
+            }
+            .nav-button {
+                padding: 10px 5px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="visitor-page">
+        <div class="search-container">
+            <h1>ابحث عن المنتج برقم</h1>
+            <p style="color: var(--color-text); font-size: 1.1em;">أدخل الرقم المخصص للمنتج أدناه.</p>
+            
+            <input type="number" id="product-number" placeholder="ضع سري هنا" required>
+            
+            <button id="search-button">🔗 توجه إلى الموقع</button>
+
+            <p style="margin-top: 20px;">
+                <button id="go-to-admin" style="background: none; border: none; color: var(--color-primary); font-size: 0.9em; cursor: pointer;">صفحة الإدارة</button>
+            </p>
+        </div>
+    </div>
+
+    <div id="admin-page">
+        
+        <div id="login-overlay">
+            <div style="background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.3);">
+                <h3>🔐 الدخول إلى لوحة التحكم</h3>
+                <input type="password" id="admin-password" placeholder="أدخل كلمة المرور" style="margin: 15px 0;">
+                <button id="login-button" style="background-color: var(--color-success); color: white;">تسجيل الدخول</button>
+                <p id="login-message" style="color: var(--color-danger); margin-top: 10px;"></p>
+                <button id="back-to-visitor" style="background-color: #f3f3f3; color: var(--color-text); margin-top: 15px;">العودة لصفحة الزوار</button>
+            </div>
+        </div>
+
+        <header class="top-nav">
+            <nav>
+                <ul class="nav-list" id="admin-nav-list" style="display: none;">
+                    <li><button class="nav-button active" data-section="add-product-section">➕ إضافة منتج</button></li>
+                    <li><button class="nav-button" data-section="edit-delete-section">✏️ تعديل / حذف</button></li>
+                    <li><button class="nav-button" data-section="stats-section">📊 الإحصائيات</button></li>
+                    <li><button class="nav-button" data-section="categories-section">🏷️ التصنيفات</button></li>
+                    <li><button class="nav-button" data-section="dev-suggestions-section">💡 تطوير</button></li>
+                    <li><button class="nav-button" data-section="logout-section" id="btn-logout-nav" style="background-color: var(--color-danger);">خروج</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="content" id="admin-content" style="display: none;">
+
+            <div id="add-product-section" class="section active">
+                <h3>➕ إضافة منتج جديد</h3>
+                <form class="add-product-form">
+                    <label for="p-number" style="font-weight: bold;">رقم المنتج:</label>
+                    <input type="number" id="p-number-admin" placeholder="أدخل رقم فريد للمنتج" required autofocus><br>
+                    
+                    <label for="p-link" style="font-weight: bold;">رابط المنتج:</label>
+                    <input type="url" id="p-link-admin" placeholder="انسخ الرابط الكامل هنا" required><br>
+                    
+                    <h4 style="margin-top: 20px;">تصنيف المنتج:</h4>
+                    <div class="checkbox-group" style="border: 1px solid #eee; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <label><input type="checkbox" name="category" value="aliexpress"> علي إكسبرس</label>
+                        <label><input type="checkbox" name="category" value="amazon"> أمازون</label>
+                        <label><input type="checkbox" name="category" value="other"> تصنيف آخر</label>
+                    </div>
+                    
+                    <button type="button" id="save-product-btn" style="background-color: var(--color-success); color: white; width: 100%;">حفظ المنتج الجديد</button>
+                    <p id="save-message" style="margin-top: 10px; font-weight: bold;"></p>
+                </form>
+            </div>
+
+            <div id="edit-delete-section" class="section">
+                <h3>✏️ تعديل / حذف منتج</h3>
+                <div id="products-list-container"></div>
+            </div>
+            
+            <div id="stats-section" class="section">
+                <h3>📊 إحصائيات وتحليل البيانات</h3>
+                <p>تحليل مُنظم لتصنيفات منتجاتك.</p>
+                
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>التصنيف</th>
+                            <th>عدد المنتجات</th>
+                            <th>النسبة المئوية من الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-table-body"></tbody>
+                    <tfoot>
+                        <tr style="background-color: #f0f0f0;">
+                            <th>الإجمالي</th>
+                            <th id="total-products-stat">0</th>
+                            <th>100%</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div id="categories-section" class="section">
+                <h3>🏷️ تصنيفات المنتجات</h3>
+                <p>التصنيفات المتاحة حاليًا هي: علي إكسبرس، أمازون، و تصنيف آخر.</p>
+            </div>
+            
+            <div id="dev-suggestions-section" class="section">
+                <h3>💡 مقترحات للتطوير والتحسين</h3>
+                <ul style="list-style-type: square; padding-right: 20px;">
+                    <li>**التخزين الآمن:** نقل البيانات إلى قاعدة بيانات سحابية (مثل Firebase) بدلاً من متصفح الزائر.</li>
+                    <li>**وظيفة التعديل:** تفعيل زر "تعديل" الموجود ليسمح بتحديث الرابط أو الرقم.</li>
+                    <li>**تتبع النقرات:** إضافة عداد للنقرات على كل رابط لتحديد المنتجات الأكثر طلباً.</li>
+                </ul>
+            </div>
+            
+            <div id="logout-section" class="section">
+                <h3>تسجيل الخروج</h3>
+                <p>لإنهاء جلسة الإدارة، انقر على زر "الخروج".</p>
+                <button id="btn-logout-content" style="background-color: var(--color-danger); color: white; width: 100%;">الخروج والعودة لصفحة الزوار</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // المتغيرات الأساسية
+        const visitorPage = document.getElementById('visitor-page');
+        const adminPage = document.getElementById('admin-page');
+        const loginOverlay = document.getElementById('login-overlay');
+        const adminNavList = document.getElementById('admin-nav-list'); // تم تغيير الاسم
+        
+        const CORRECT_PASSWORD = '1421'; 
+
+        // دوال المساعدة للبيانات
+        const getCategoryName = (categoryValue) => {
+            if (categoryValue === 'aliexpress') return 'علي إكسبرس';
+            if (categoryValue === 'amazon') return 'أمازون';
+            return 'أخرى';
+        };
+
+        const getProducts = () => {
+            const products = localStorage.getItem('products');
+            return products ? JSON.parse(products) : {};
+        };
+
+        const saveProducts = (products) => {
+            localStorage.setItem('products', JSON.stringify(products));
+            updateStats();
+        };
+
+        //
+        // وظيفة الإحصائيات (تحليل بيانات مُحسَّن)
+        //
+        const updateStats = () => {
+            const products = getProducts();
+            const allProducts = Object.values(products);
+            const total = allProducts.length;
+            let counts = { 'aliexpress': 0, 'amazon': 0, 'other': 0 };
+
+            allProducts.forEach(product => {
+                if (product.categories) {
+                    product.categories.forEach(cat => {
+                        if (counts.hasOwnProperty(cat)) {
+                            counts[cat]++;
+                        }
+                    });
+                }
+            });
+            
+            const statsBody = document.getElementById('stats-table-body');
+            statsBody.innerHTML = '';
+
+            const categories = ['aliexpress', 'amazon', 'other'];
+
+            categories.forEach(cat => {
+                const count = counts[cat];
+                const percentage = total > 0 ? ((count / total) * 100).toFixed(1) : 0;
+                
+                const row = statsBody.insertRow();
+                row.insertCell().textContent = getCategoryName(cat);
+                row.insertCell().textContent = count;
+                row.insertCell().textContent = `${percentage}%`;
+            });
+            
+            document.getElementById('total-products-stat').textContent = total;
+        };
+
+        //
+        // وظيفة عرض وحذف المنتجات
+        //
+        const renderProductsList = () => {
+            const products = getProducts();
+            const container = document.getElementById('products-list-container');
+            container.innerHTML = ''; 
+
+            if (Object.keys(products).length === 0) {
+                container.innerHTML = '<p style="color: gray;">لا توجد منتجات مسجلة بعد.</p>';
+                return;
+            }
+            
+            const listHTML = document.createElement('ul');
+            
+            Object.keys(products).forEach(num => {
+                const product = products[num];
+                const listItem = document.createElement('li');
+                
+                const categoryNames = product.categories.map(getCategoryName).join('، ');
+
+                listItem.innerHTML = `
+                    <div>
+                        <span style="font-weight: bold; color: var(--color-primary);">رقم: ${num}</span> | 
+                        رابط: <a href="${product.link}" target="_blank" title="${product.link}">الرابط</a> 
+                        <br>
+                        <span style="font-size: 0.9em; color: #555;">التصنيف: ${categoryNames || 'لا يوجد'}</span>
+                    </div>
+                    <div>
+                        <button style="background-color: #ffc107; color: var(--color-text);">تعديل</button>
+                        <button onclick="deleteProduct('${num}')" style="background-color: var(--color-danger); color: white;">حذف</button>
+                    </div>
+                    `;
+                listHTML.appendChild(listItem);
+            });
+            
+            container.appendChild(listHTML);
+        };
+
+        window.deleteProduct = (num) => {
+            if (confirm(`هل أنت متأكد من حذف المنتج رقم ${num}؟`)) {
+                const products = getProducts();
+                delete products[num];
+                saveProducts(products);
+                renderProductsList(); 
+            }
+        };
+
+
+        //
+        // 3. إدارة التنقل وتسجيل الدخول (تم تصحيح الإظهار هنا)
+        //
+
+        const showAdmin = () => {
+            visitorPage.style.display = 'none';
+            adminPage.style.display = 'block';
+            adminNavList.style.display = 'flex'; // **التصحيح: إظهار القائمة العلوية**
+            document.getElementById('admin-content').style.display = 'block';
+            loginOverlay.style.display = 'none';
+        };
+
+        const showVisitor = () => {
+            visitorPage.style.display = 'flex';
+            adminPage.style.display = 'none';
+            loginOverlay.style.display = 'none';
+        };
+
+        document.getElementById('go-to-admin').addEventListener('click', () => {
+            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                showAdmin();
+            } else {
+                visitorPage.style.display = 'none';
+                adminPage.style.display = 'block';
+                loginOverlay.style.display = 'flex';
+            }
+        });
+
+        document.getElementById('login-button').addEventListener('click', () => {
+            const passwordInput = document.getElementById('admin-password');
+            const loginMessage = document.getElementById('login-message');
+            
+            if (passwordInput.value === CORRECT_PASSWORD) { 
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                showAdmin();
+                loginMessage.textContent = '';
+                updateStats();
+                // تفعيل قسم الإضافة بعد الدخول
+                document.getElementById('add-product-section').classList.add('active');
+            } else {
+                loginMessage.textContent = 'كلمة المرور خاطئة. حاول مجدداً.';
+                passwordInput.value = '';
+            }
+        });
+
+        document.getElementById('back-to-visitor').addEventListener('click', showVisitor);
+        
+        // الخروج
+        const handleLogout = () => {
+            sessionStorage.removeItem('adminLoggedIn');
+            showVisitor();
+        };
+
+        document.getElementById('btn-logout-nav').addEventListener('click', handleLogout);
+        document.getElementById('btn-logout-content').addEventListener('click', handleLogout);
+
+
+        //
+        // 4. منطق التنقل الداخلي (القائمة العلوية)
+        //
+
+        const navButtons = document.querySelectorAll('.nav-button');
+        const sections = document.querySelectorAll('.section');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                button.classList.add('active');
+                const targetSectionId = button.getAttribute('data-section');
+                
+                if (targetSectionId !== 'logout-section') {
+                    document.getElementById(targetSectionId).classList.add('active');
+                }
+
+                if (targetSectionId === 'edit-delete-section') {
+                    renderProductsList();
+                } else if (targetSectionId === 'stats-section') {
+                    updateStats();
+                }
+            });
+        });
+
+
+        //
+        // 5. وظيفة حفظ المنتج الجديد
+        //
+
+        document.getElementById('save-product-btn').addEventListener('click', () => {
+            const numInput = document.getElementById('p-number-admin');
+            const linkInput = document.getElementById('p-link-admin');
+            const saveMessage = document.getElementById('save-message');
+            const categoryCheckboxes = document.querySelectorAll('.checkbox-group input[name="category"]:checked');
+            
+            const productNum = numInput.value.trim();
+            const productLink = linkInput.value.trim();
+            const categories = Array.from(categoryCheckboxes).map(cb => cb.value);
+
+            if (!productNum || !productLink) {
+                saveMessage.textContent = 'الرجاء إدخال رقم ورابط المنتج.';
+                saveMessage.style.color = 'var(--color-danger)';
+                return;
+            }
+
+            const products = getProducts();
+            
+            if (products[productNum]) {
+                saveMessage.textContent = '⚠️ هذا الرقم موجود بالفعل.';
+                saveMessage.style.color = '#ffc107';
+                return;
+            }
+
+            products[productNum] = {
+                link: productLink,
+                categories: categories 
+            };
+            
+            saveProducts(products);
+            saveMessage.textContent = `✅ تم حفظ المنتج رقم ${productNum} بنجاح!`;
+            saveMessage.style.color = 'var(--color-success)';
+            numInput.value = '';
+            linkInput.value = '';
+            categoryCheckboxes.forEach(cb => cb.checked = false); 
+        });
+
+        //
+        // 6. وظيفة البحث في صفحة الزوار
+        //
+
+        document.getElementById('search-button').addEventListener('click', () => {
+            const productNum = document.getElementById('product-number').value.trim();
+            const products = getProducts();
+
+            if (productNum) {
+                const product = products[productNum];
+
+                if (product && product.link) {
+                    window.open(product.link, '_blank');
+                } else {
+                    alert('عذراً، لم يتم العثور على المنتج بالرقم: ' + productNum);
+                }
+            } else {
+                alert('الرجاء إدخال رقم المنتج.');
+            }
+        });
+
+        updateStats(); 
+    </script>
+</body>
+</html>
