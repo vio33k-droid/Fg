@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بحث بالروابط</title>
+<style>
+  body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  input[type="text"] {
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h2>ابحث بالرقم للوصول للرابط</h2>
+<input type="text" id="searchInput" placeholder="ادخل الرقم هنا">
+<button onclick="searchLink()">🔍 بحث</button>
+
+<script>
+  // قائمة الأرقام مع روابطها
+  const links = {
+    "1": https://ar.aliexpress.com/item/1005006527690815.html?pdp_npi=4%40dis%21SAR%211540.32%21390.94%21%21%21400.00%21101.52%21%400baf76ee17638549229748651d0185%2112000037816610308%21affd%21%21%21?spm=0._cps_dada.0.0.2fc8rBwRrBwRbt&scm=null&pvid=null,
+    "2": https://github.com/rahafalanmi518-oss/Story.git,
+    "3": "https://example.com/3",
+    "4": "https://example.com/4",
+    "5": "https://example.com/5"
+  };
+
+  function searchLink() {
+    const num = document.getElementById('searchInput').value;
+    if (links[num]) {
+      window.location.href = links[num];
+    } else {
+      alert("الرقم غير موجود. حاول مرة أخرى!");
+    }
+  }
+</script>
+
+</body>
+</html>
